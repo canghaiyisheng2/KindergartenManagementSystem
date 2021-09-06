@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" href="~/css/home_index.css" />
+
+<div class="container" id="index-container">
+    <div class="row">
+        <div class="col-md-3 option-panel">
+            <div class="row">
+                <div class="btn process-op">全部</div>
+            </div>
+            <div class="row">
+                <div class="btn process-op">待审核</div>
+            </div>
+            <div class="row">
+                <div class="btn process-op">已完成</div>
+            </div>
+            <div class="row">
+                <div class="btn process-op">已终止</div>
+            </div>
+        </div>
+        <div class="col-md-5 process-list">
+            @* @foreach *@
+            <div class="process-entity">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color:lime"></span>
+                已完成<br />
+                @*<span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color:darkorange"></span>
+            待审核<br />
+                @*<span class="glyphicon glyphicon-remove" aria-hidden="true" style="color:crimson"></span>
+            已终止<br />*@
+                <span class="process-brief">
+                    xx用户发起的xx流程
+                </span>
+                <a href="~/css/home_index.css" class="process-detail">详细信息</a>
+            </div>
+        </div>
+        <div class="col-md-4 module-panel">
+            <div class="row">
+                <div class="btn module-option">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                    入托申请              
+                </div>
+                <div class="btn module-option">
+                    <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                    就餐管理
+                </div>
+            </div>
+            <div class="row">
+                <div class="btn module-option">
+                    <span class="glyphicon glyphicon-bed" aria-hidden="true"></span>
+                    午休管理
+                </div>
+                <div class="btn module-option">
+                    <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                    请假管理
+                </div>
+            </div>
+            <div class="row">
+                <div class="btn module-option">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    违纪管理
+                </div>
+                <div class="btn module-option">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    就医管理
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
