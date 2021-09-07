@@ -1,0 +1,9 @@
+﻿<h1 class="h1">
+    销假成功，三秒后跳转
+</h1>
+
+<script type="text/javascript">
+    setTimeout(function () {
+        window.location.replace('@Url.Action("studentListAbsence", "Absence")');
+    }, 3000);
+</script>

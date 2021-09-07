@@ -4,3 +4,20 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
+
+/*比较窄的div，用于包裹其他元素*/
+.thinContainer {
+    margin: auto;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 70%;
+}
+
+.emphasize {
+    border-left: solid;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    padding-left: 5mm;
+    text-align: left;
+}
