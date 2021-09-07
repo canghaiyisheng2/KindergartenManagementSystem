@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace KindergartenManagementSystem.Models.shared
 {
     public class User
     {
-        string user_name { get; set; }
-        string password { get; set; }
-        int auth { get; set; }
-        int banding { get; set; }
+        [Key]
+        public string user_name { get; set; }
+        public string password { get; set; }
+        public int auth { get; set; }
+        public int banding { get; set; }
     }
 }

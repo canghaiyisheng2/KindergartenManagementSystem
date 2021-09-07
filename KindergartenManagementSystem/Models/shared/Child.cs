@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KindergartenManagementSystem.Models.shared
 {
     public class Child
     {
-        int id { get; set; }
-        string name { get; set; }
-        DateTime birth { get; set; }
-        bool sex { get; set; }
-        string cla { get; set; } //class
-        string gua_name{ get; set; }
-        string gua_phone { get; set; }
-        string home_addr { get; set; }
+        [Key]
+        public int id { get; set; }
+        public string name { get; set; }
+        public DateTime birth { get; set; }
+        public bool sex { get; set; }
+        public string cla { get; set; } //class
+        public string gua_name { get; set; }
+        public string gua_phone { get; set; }
+        public string home_addr { get; set; }
     }
 }

@@ -4,3 +4,29 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
+
+.module-panel {
+    position: fixed;
+    right: 0;
+    padding:0;
+    margin-right: 3vw;
+    margin-top: 5vh;
+    width: 10vw;
+    height: 70vh;
+    border: 2px solid #f0f0f0;
+}
+
+
+.module-option {
+    text-align: center;
+    font-size: 1.2vw;
+    color: gray;
+    height: 10vh;
+    width: 10vw;
+    line-height: 7.5vh;
+    border: 2px solid #f0f0f0;
+}
+
+.err-msg {
+    color: red;
+}
