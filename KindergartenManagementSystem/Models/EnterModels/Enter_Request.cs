@@ -29,8 +29,8 @@ namespace KindergartenManagementSystem.Models.EnterModels
         public string Name { get; set; }
 
         [Display(Name = "出生日期：")]
-        [DisplayFormat(DataFormatString = "yy/dd/MM")]
         [Required(ErrorMessage = "请输入孩子的出生日期")]
+        [DisplayFormat(DataFormatString = "yy/dd/MM")]
         public DateTime Birthday { get; set; }
 
         [Display(Name = "性别：")]

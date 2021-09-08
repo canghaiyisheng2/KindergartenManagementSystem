@@ -1,0 +1,9 @@
+﻿<h1 class="h1">
+    拒绝成功，三秒后跳转
+</h1>
+
+<script type="text/javascript">
+    setTimeout(function () {
+        window.location.replace('@Url.Action("teacherListAbsence", "Absence")');
+    }, 3000);
+</script>

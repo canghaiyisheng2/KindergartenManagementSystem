@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model KindergartenManagementSystem.ViewModels.HomeIndexList;
+
 <link rel="stylesheet" href="~/css/home_index.css" />
 
 <div class="container" id="index-container">
@@ -21,19 +23,51 @@
             </div>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8 process-list">
-            @* @foreach *@
+            @foreach (var item in Model.processes)
+            {
             <div class="process-entity">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color:lime"></span>
-                已完成<br />
-                @*<span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color:darkorange"></span>
-            待审核<br />
-                @*<span class="glyphicon glyphicon-remove" aria-hidden="true" style="color:crimson"></span>
-            已终止<br />*@
+                @if (item.status == 0)
+                {
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color:darkorange">待审核</span>
+                }
+                else if (item.status == 1)
+                {
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color:lime">已完成</span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true" style="color:crimson">已终止</span>
+                }
+
+                <br />
                 <span class="process-brief">
-                    xx用户发起的xx流程
+                    @item.starter 用户发起的
+                    @if (item.type == 0)
+                    {
+                        <span>入托申请</span>
+                    }
+                    else
+                    {
+                        <span>请假申请</span>
+                    }
+                    流程
                 </span>
-                <a href="/Enter/EnterDetail" class="process-detail">详细信息</a>
+                @if (item.type == 0)
+                {
+                    <a asp-controller="Enter" asp-action="EnterDetail" asp-route-id="@item.pro_id" class="process-detail">详细信息</a>
+                }
+                else
+                {
+                    //请假流程detail
+                    <a asp-controller="Enter" asp-action="EnterDetail" asp-route-id="@item.pro_id" class="process-detail">详细信息</a>
+                }
             </div>
+            }
+
+
+
+
+
         </div>
     </div>
 </div>

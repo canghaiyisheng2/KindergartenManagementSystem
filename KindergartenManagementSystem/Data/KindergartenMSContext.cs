@@ -18,6 +18,5 @@ namespace KindergartenManagementSystem.Data
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Enter_Request> enter_Requests { get; set; }
-        public DbSet<Enter_Request> enter_Forms { get; set; }
     }
 }

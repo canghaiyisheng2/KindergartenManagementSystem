@@ -5,6 +5,7 @@ body {
     padding-bottom: 20px;
 }
 
+<<<<<<< HEAD
 .module-panel {
     position: fixed;
     right: 0;
@@ -30,3 +31,21 @@ body {
 .err-msg {
     color: red;
 }
+=======
+/*比较窄的div，用于包裹其他元素*/
+.thinContainer {
+    margin: auto;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 70%;
+}
+
+.emphasize {
+    border-left: solid;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    padding-left: 5mm;
+    text-align: left;
+}
+>>>>>>> 16fec327146a1dcb15477a8ce1c8fccd63b94f9f

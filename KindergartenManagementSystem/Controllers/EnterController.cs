@@ -14,6 +14,11 @@ namespace KindergartenManagementSystem.Controllers
     {
         IEnterDataService _data;
 
+        public EnterController(IEnterDataService data)
+        {
+            _data = data;
+        }
+
         [HttpGet]
         public IActionResult EnterForm()
         {
@@ -21,9 +26,12 @@ namespace KindergartenManagementSystem.Controllers
         }
 
         [HttpGet]
-        public IActionResult EnterDetail()
+        public IActionResult EnterDetail(int? id)
         {
-            return View();
+            Enter_Request enter_Request = null;
+            if(id != null)
+                enter_Request = _data.GetRequestById(id);
+            return View(enter_Request);
         }
 
         [HttpPost]
@@ -31,16 +39,22 @@ namespace KindergartenManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_data.AddRequest(enter_Request);
+                enter_Request.Status = 0;
+                enter_Request.Starter = "starter";
+                _data.AddRequest(enter_Request);
                 return RedirectToAction("Index", "Home");
             }
             return View(enter_Request);
         }
 
         [HttpPost]
-        public IActionResult Approve()
+        public IActionResult Approve(bool result ,string suggest ,int id)
         {
-            return View();
+            if (result)
+                _data.ApproveAccept(id, suggest);
+            else
+                _data.ApproveReject(id, suggest);
+            return RedirectToRoute(new { action = "EnterDetail", id = id});
         }
     }
 }

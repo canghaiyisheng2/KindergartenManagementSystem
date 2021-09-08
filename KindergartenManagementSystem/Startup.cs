@@ -31,7 +31,7 @@ namespace KindergartenManagementSystem
         {
             services.AddDbContext<KindergartenMSContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddSingleton<IEnterDataService, EnterDataService>();
+            services.AddTransient<IEnterDataService, EnterDataService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
