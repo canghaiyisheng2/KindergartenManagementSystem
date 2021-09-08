@@ -29,9 +29,16 @@ namespace KindergartenManagementSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication("Cookies")
+                .AddCookie(option =>
+                {
+                    option.LoginPath = new PathString("/Login/Login");
+                });
+
             services.AddDbContext<KindergartenMSContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IEnterDataService, EnterDataService>();
+            services.AddTransient<ILoginService, LoginService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -49,6 +56,7 @@ namespace KindergartenManagementSystem
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

@@ -30,14 +30,67 @@ namespace KindergartenManagementSystem.Services.EnterService
             return _context.enter_Requests.ToList();
         }
 
-        List<Enter_Request> GetFinished()
+        public List<Enter_Request> GetByStarterAndStatus(string starter, int status)
         {
-
+            List<Enter_Request> res = new List<Enter_Request>();
+            IQueryable<Enter_Request> query;
+            if (status == 3)
+            {
+                query = from b in _context.enter_Requests
+                        where b.Starter == starter
+                        select b;
+            }
+            else
+            {
+                query = from b in _context.enter_Requests
+                            where b.Starter == starter && b.Status == status
+                            select b;
+            }
+            
+            foreach (Enter_Request item in query)
+            {
+                res.Add(item);
+            }
+            return res;
         }
 
-        List<Enter_Request> GetTerminated()
+        public List<Enter_Request> GetByTeacherAndStatus(string teacher_username, int status)
         {
+            List<Enter_Request> res = new List<Enter_Request>();
+            User user = _context.Users.FirstOrDefault(b => b.user_name == teacher_username);
+            if (user == null) return null;
+            Teacher teacher = _context.Teachers.FirstOrDefault(m => m.id == user.banding);
+            if (teacher == null) return null;
+            string cla = teacher.cla;
 
+            //查询老师所属班级的相关请求
+            IQueryable<Enter_Request> query;
+            if (status == 3)
+            {
+                query = from b in _context.enter_Requests
+                            where b.Cla == cla
+                            select b;
+            }
+            else
+            {
+                query = from b in _context.enter_Requests
+                        where b.Cla == cla && b.Status == status
+                        select b;
+            }
+            
+            foreach (Enter_Request item in query)
+            {
+                res.Add(item);
+            }
+
+            //查询教师作为发起者的请求
+            List<Enter_Request> requestsWithStarter = GetByStarterAndStatus(teacher_username, status);
+            foreach (Enter_Request item in requestsWithStarter)
+            {
+                res.Add(item);
+            }
+
+            return res;
         }
 
         public Enter_Request GetRequestById(int? id)

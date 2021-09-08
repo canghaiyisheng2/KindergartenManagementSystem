@@ -14,9 +14,12 @@ namespace KindergartenManagementSystem.Data
         {
         }
 
+        //公共模块
         public DbSet<Child> Children { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<User> Users { get; set; }
+
+        //入托模块
         public DbSet<Enter_Request> enter_Requests { get; set; }
     }
 }

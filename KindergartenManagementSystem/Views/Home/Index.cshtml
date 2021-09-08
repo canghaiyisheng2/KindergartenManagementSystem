@@ -7,19 +7,20 @@
 <link rel="stylesheet" href="~/css/home_index.css" />
 
 <div class="container" id="index-container">
+
     <div class="row">
         <div class="col-md-4 col-sm-4 col-xs-4 option-panel">
             <div class="row">
-                <div class="btn process-op">全部</div>
+                <div class="btn process-op" onclick="window.location='@Url.RouteUrl(new { action = "Index", status = 3})'">全部</div>
             </div>
             <div class="row">
-                <div class="btn process-op">待审核</div>
+                <div class="btn process-op" onclick="window.location='@Url.RouteUrl(new { action = "Index", status = 0})'">待审核</div>
             </div>
             <div class="row">
-                <div class="btn process-op">已完成</div>
+                <div class="btn process-op" onclick="window.location='@Url.RouteUrl(new { action = "Index", status = 1})'">已完成</div>
             </div>
             <div class="row">
-                <div class="btn process-op">已终止</div>
+                <div class="btn process-op" onclick="window.location='@Url.RouteUrl(new { action = "Index", status = 2})'">已终止</div>
             </div>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8 process-list">
@@ -63,9 +64,6 @@
                 }
             </div>
             }
-
-
-
 
 
         </div>

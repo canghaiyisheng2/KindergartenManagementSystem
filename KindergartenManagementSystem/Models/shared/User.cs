@@ -13,5 +13,13 @@ namespace KindergartenManagementSystem.Models.shared
         public string password { get; set; }
         public int auth { get; set; }
         public int banding { get; set; }
+
+        public User() { }
+        public User(string username, string password, int auth)
+        {
+            this.user_name = username;
+            this.password = password;
+            this.auth = auth;
+        }
     }
 }

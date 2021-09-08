@@ -1,0 +1,48 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="container" style="margin-top:10vh">
+        <div class="form row">
+            <form class="form-horizontal col-sm-offset-3 col-md-offset-3" method="post" enctype="multipart/form-data" asp-action="Login">
+                <h3 class="form-title">登录</h3>
+                <br />
+                <div class="col-sm-9 col-md-9">
+                    <div class="form-group">
+                        <!--        用户名图标和用户名输入框            -->
+                        <input class="form-control" type="text" name="username" id="username" placeholder="请输入用户名" required autofocus>
+                    </div>
+                    <!--        密码图标和密码输入框                -->
+                    <div class="form-group">
+                        <input class="form-control " type="password" name="password" id="password" placeholder="请输入密码" required>
+                    </div>
+                    <div class="err-msg">@ViewBag.ErrMsg</div>
+                    <div class="form-group">
+                        <label class="radio-inline">
+                            <input type="radio" name="auth" value=true checked> 学生用户
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="auth" value=false> 教师用户
+                        </label>
+                    </div>
+                    <!--        用超链接跳转到注册页面               -->
+                    <div class="form-group">
+                        <br>
+                        <a asp-action="Register">没有账号？立即注册</a>
+                    </div>
+
+                    <!--         登录按钮           -->
+                    <div class="form-group">
+                        <input type="submit" value="登录" class="btn btn-success">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

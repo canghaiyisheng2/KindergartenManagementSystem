@@ -5,11 +5,14 @@ body {
     padding-bottom: 20px;
 }
 
-<<<<<<< HEAD
-.module-panel {
+footer {
+    margin-top: 20vh;
+}
+
+.module {
     position: fixed;
     right: 0;
-    padding:0;
+    padding: 0;
     margin-right: 3vw;
     margin-top: 5vh;
     width: 10vw;
@@ -31,7 +34,7 @@ body {
 .err-msg {
     color: red;
 }
-=======
+
 /*比较窄的div，用于包裹其他元素*/
 .thinContainer {
     margin: auto;
@@ -48,4 +51,3 @@ body {
     padding-left: 5mm;
     text-align: left;
 }
->>>>>>> 16fec327146a1dcb15477a8ce1c8fccd63b94f9f
