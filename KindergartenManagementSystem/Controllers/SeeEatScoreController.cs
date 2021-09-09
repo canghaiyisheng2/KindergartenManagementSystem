@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KindergartenManagementSystem.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KindergartenManagementSystem.Controllers
 {
+    [Authorize]
     public class SeeEatScoreController : Controller
     {
         private IEatScoreRepository _repository;

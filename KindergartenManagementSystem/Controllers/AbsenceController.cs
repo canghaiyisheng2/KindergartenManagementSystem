@@ -8,16 +8,20 @@ using KindergartenManagementSystem.Models.shared;
 using KindergartenManagementSystem.Services;
 using Microsoft.AspNetCore.Authorization;
 using KindergartenManagementSystem.Filter.AbsenceFilter;
+using KindergartenManagementSystem.Data;
 
 namespace KindergartenManagementSystem.Controllers
 {
     public class AbsenceController : Controller
     {
         IAbsenceService _absenceService;
+        KindergartenMSContext _context;
 
-        public AbsenceController(IAbsenceService absenceService)
+        public AbsenceController(IAbsenceService absenceService, KindergartenMSContext context)
         {
             _absenceService = absenceService;
+            _context = context;
+
         }
 
         [HttpGet]
@@ -47,15 +51,21 @@ namespace KindergartenManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                absence.starter = User.Claims.First().Value;
-                if (_absenceService.add(absence))
-                {
-                    ViewBag.Status = "申请成功，等待审核";
-                }
+                if (_context.Users.FirstOrDefault(m => m.user_name == User.Claims.First().Value).banding == 0)
+                    ViewBag.Status = "请先进行入托操作！";
                 else
                 {
-                    ViewBag.Status = "申请失败，请检查输入是否合法";
+                    absence.starter = User.Claims.First().Value;
+                    if (_absenceService.add(absence))
+                    {
+                        ViewBag.Status = "申请成功，等待审核";
+                    }
+                    else
+                    {
+                        ViewBag.Status = "申请失败，请检查输入是否合法";
+                    }
                 }
+                
             }
             return View();
         }

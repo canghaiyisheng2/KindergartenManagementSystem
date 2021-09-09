@@ -19,7 +19,7 @@
                 <h3>就餐评分</h3>
             </div>
             <div>
-                <form action="/EatScore/SetEatScore" method="post" onsubmit="return last_stars()">
+                <form action="/EatScore/GetEatScore" method="post" onsubmit="return last_stars()">
                     <div class="br-content">
                         <div class="input-group mb-4 bootint">
                             <p class="display-label">
@@ -60,7 +60,7 @@
                     <textarea class="form-control" name="Note" rows="3" placeholder="备注" asp-for="Note"></textarea>
                     </div>
                     <div style="padding-top: 10px;text-align: center;">
-                        <input type="submit" class="btn" value="提交" >
+                        <input type="submit" class="btn" id="submit" value="提交" >
                     </div>
                     <div class="be-con"></div>
             </form>

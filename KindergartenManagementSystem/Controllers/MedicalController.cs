@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using KindergartenManagementSystem.Models;
 using KindergartenManagementSystem.Models.shared;
 using KindergartenManagementSystem.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KindergartenManagementSystem.Controllers
 {
+    [Authorize]
     public class MedicalController : Controller
     {
         IMedicalRepository _medicalRepository;

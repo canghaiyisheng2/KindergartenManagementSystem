@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KindergartenManagementSystem.Repositories;
 using KindergartenManagementSystem.Models;
+using Microsoft.AspNetCore.Authorization;
+using KindergartenManagementSystem.Data;
 
 namespace KindergartenManagementSystem.Controllers
 {
+    [Authorize]
     public class EatScoreController : Controller
     {
         private IEatScoreRepository _repository;
+        private KindergartenMSContext _context;
 
         public IActionResult Index()
         {
@@ -23,14 +27,15 @@ namespace KindergartenManagementSystem.Controllers
             else
             {
                 // 判断是学生， 有学生id
-                int stu_id = 2;
+                int stu_id = _context.Users.FirstOrDefault(m => m.user_name == User.Claims.First().Value).banding;
                 return Redirect("/SeeEatScore/GetScoreDiagram?stu_id=" + stu_id);
             }
         }
 
-        public EatScoreController(IEatScoreRepository repository)
+        public EatScoreController(IEatScoreRepository repository, KindergartenMSContext context)
         {
             _repository = repository;
+            _context = context;
         }
 
         [HttpGet]
