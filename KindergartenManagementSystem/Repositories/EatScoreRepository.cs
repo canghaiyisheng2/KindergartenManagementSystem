@@ -9,9 +9,9 @@ namespace KindergartenManagementSystem.Repositories
 {
     public class EatScoreRepository:IEatScoreRepository
     {
-        private EatScoreContext _context;
+        private KindergartenMSContext _context;
         
-        public EatScoreRepository(EatScoreContext context)
+        public EatScoreRepository(KindergartenMSContext context)
         {
             _context = context;
         }

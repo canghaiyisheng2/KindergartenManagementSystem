@@ -15,7 +15,7 @@ namespace KindergartenManagementSystem.Controllers
         public IActionResult Index()
         {
             // 登录后能判断是否是教师
-            bool isTeacher = true;
+            bool isTeacher = HttpContext.User.Claims.ElementAt(1).Value == "teacher";
             if (isTeacher)
             {
                 return View();

@@ -32,12 +32,6 @@ namespace KindergartenManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IEatScoreRepository, EatScoreRepository>();
-            // services.Configure<CookiePolicyOptions>(options =>
-            // {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-            //    options.CheckConsentNeeded = context => true;
-             //   options.MinimumSameSitePolicy = SameSiteMode.None;
-            // });
             services.AddAuthentication("Cookies")
                 .AddCookie(option =>
                 {
@@ -50,9 +44,6 @@ namespace KindergartenManagementSystem
             services.AddTransient<IAbsenceService, AbsenceService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddDbContext<EatScoreContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
