@@ -19,6 +19,9 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+            <ul class="nav navbar-nav" style="font-size:1.3vw">
+                <li><a href="@Url.Action("Index","Home")">KindergartenManagementSystem</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (User.Claims.FirstOrDefault() != null)
                 {
@@ -39,7 +42,7 @@
             <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
             入托申请
         </div>
-        <div class="btn module-option" onclick="window.location='#'">
+        <div class="btn module-option" onclick="window.location='/EatScore'">
             <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
             就餐管理
         </div>
@@ -63,15 +66,6 @@
     </div>
 
 
-    <div class="container body-content">
-        @RenderBody()
-        <footer>
-            <hr />
-            <p>&copy; 2021 - KindergartenManagementSystem</p>
-        </footer>
-    </div>
-
-
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -90,6 +84,14 @@
                 integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
         </script>
     </environment>
+
+    <div class="container body-content">
+        @RenderBody()
+        <footer>
+            <hr />
+            <p>&copy; 2021 - KindergartenManagementSystem</p>
+        </footer>
+    </div>
 
     <script src="~/js/site.min.js" asp-append-version="true"></script>
     <partial name="_ValidationScriptsPartial.cshtml" />
