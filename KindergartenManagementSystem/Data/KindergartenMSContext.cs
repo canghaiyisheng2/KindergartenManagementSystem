@@ -28,6 +28,11 @@ namespace KindergartenManagementSystem.Data
 
         // 就餐管理
         public DbSet<EatScore> EatScores { get; set; }
+
+        //午休模块
+        public virtual DbSet<NoonBreak> NoonBreak { get; set; }
+
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EatScore>().HasData(

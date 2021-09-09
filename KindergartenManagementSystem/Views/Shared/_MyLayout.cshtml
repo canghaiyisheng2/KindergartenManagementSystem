@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/modernizr/2010.07.06dev/modernizr.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="navbr navbar-default">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Gallery", "Index", "NoonBreaks")</li>
+                    <li>@Html.ActionLink("Add", "Create", "NoonBreaks")</li>
+                    <li>@Html.ActionLink("Search", "Search", "NoonBreaks")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content" style="margin-top:25px; width: 70vw">
+        @RenderBody()
+        <hr />
+        <footer></footer>
+    </div>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
