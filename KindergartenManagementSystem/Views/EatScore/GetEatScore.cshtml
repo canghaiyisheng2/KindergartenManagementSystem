@@ -1,4 +1,5 @@
-﻿
+﻿@using KindergartenManagementSystem.Models;
+@model KindergartenManagementSystem.Models.EatScore;
 @{
     ViewData["Title"] = "GetEatScore";
 }
@@ -7,13 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/score.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"></script>
     <link rel="stylesheet" href="~/css/stars.css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
 </head>
 
 <body>
@@ -25,36 +22,42 @@
                 <form action="/EatScore/SetEatScore" method="post" onsubmit="return last_stars()">
                     <div class="br-content">
                         <div class="input-group mb-4 bootint">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-child"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Student Id" name="stu_id">
+                            <p class="display-label">
+                                @Html.LabelFor(a => Model.StuId)
+                        </p>
+                        <input type="text" class="form-control" placeholder="Student Id" name="StuId" asp-for="StuId">
+                        <span asp-validation-for="StuId"></span>
+                    </div>
+                        <br>
+                    <div class="input-group mb-4 bootint">
+                        <p class="display-label">
+                            @Html.LabelFor(a => Model.Teacher)
+                        </p>
+                        <input type="text" class="form-control" placeholder="Teacher Name" name="Teacher" asp-for="Teacher">
+                        
+                    </div>
+                    <div class="order-evaluation clearfix">
+                        <input type="number" name="Score" id="stars-num" style="display:none;" asp-for="Score">
+                        <span asp-validation-for="Score"></span>
+                        <div class="block">
+                            <ul>
+                                <li data-default-index="0">
+                                    <span>
+                                        <img src="~/images/x1.png">
+                                        <img src="~/images/x1.png">
+                                        <img src="~/images/x1.png">
+                                        <img src="~/images/x1.png">
+                                        <img src="~/images/x1.png">
+                                    </span>
+                                    <em class="level"></em>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="input-group mb-4 bootint">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Teacher Name" name="teacher">
-                        </div>
-                        <div class="order-evaluation clearfix">
-                            <input type="number" name="stars_num" id="stars-num" style="display:none;" value=0>
-                            <div class="block">
-                                <ul>
-                                    <li data-default-index="0">
-                                        <span>
-                                            <img src="~/images/x1.png">
-                                            <img src="~/images/x1.png">
-                                            <img src="~/images/x1.png">
-                                            <img src="~/images/x1.png">
-                                            <img src="~/images/x1.png">
-                                        </span>
-                                        <em class="level"></em>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <textarea class="form-control" name="note" rows="3" placeholder="备注"></textarea>
+                    </div>
+                    <p class="display-label">
+                        @Html.LabelFor(a => Model.Note)
+                    </p>
+                    <textarea class="form-control" name="Note" rows="3" placeholder="备注" asp-for="Note"></textarea>
                     </div>
                     <div style="padding-top: 10px;text-align: center;">
                         <input type="submit" class="btn" value="提交" >
@@ -139,6 +142,7 @@
             var index = $(".block li").attr("data-default-index");//点击后的索引
             index = parseInt(index);
             console.log("index", index);
+            $("#stars-num").attr("value", index);
             $(".level").html(byIndexLeve(index - 1));
             console.log(byIndexLeve(index - 1));
             $(".order-evaluation ul li:eq(0)").find("img").attr("src", "/images/x1.png");

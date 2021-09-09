@@ -2,12 +2,57 @@
 @{
     ViewData["Title"] = "GetScoreDetail";
 }
+<head>
+    <link rel="stylesheet" href="~/css/score.css">
+    <link rel="stylesheet" href="~/css/stars.css">
+</head>
 
-<h2>GetScoreDetail</h2>
+<body>
+    <div class="be-content pren">
+        <div class="ioc_text">
+            <h3>就餐评分</h3>
+        </div>
+                <div class="br-content">
+                    @*<div class="input-group mb-4 bootint">*@
+                    <p class="display-label">
+                        @Html.LabelFor(a => Model.StuId) @Html.DisplayFor(a => Model.StuId)
+                    </p>
+                        
+                    @*</div>*@
+                    <br>
+                    @*<div class="input-group mb-4 bootint">*@
+                    <p class="display-label">
+                        @Html.LabelFor(a => Model.Teacher) @Html.DisplayFor(a => Model.Teacher)
+                    </p>
+                        
+                    @*</div>*@
+                    <br>
+                    @*<div class="order-evaluation clearfix">
+                        <div class="block">*@
+                    <p class="display-label">
+                        @Html.LabelFor(a => Model.Score) @Html.DisplayFor(a => Model.Score)
+                    </p>
+                            
+                        @*</div>
+                    </div>*@
+                    <br>
+                    <p class="display-label">
+                        @Html.LabelFor(a => Model.Note)
+                    </p>
+                    <p>@Html.DisplayFor(a => Model.Note)</p>
+                </div>
+        <br>
+                <div style="padding-top: 10px;text-align: center;">
+                    <button class="btn" value="返回" onclick="window.location.href='/SeeEatScore/GetScoreDiagram?stu_id=@Html.DisplayFor(a=>Model.StuId)'">返回</button>
+                </div>
+                <div class="be-con"></div>
+        </div>
+</body>
+@*<h2>GetScoreDetail</h2>
 <p>Student Id: @Html.DisplayFor(a => Model.StuId)</p>
 <p>Teacher: @Html.DisplayFor(a => Model.Teacher)</p>
 <p>Score: @Html.DisplayFor(a => Model.Score)</p>
 <p>Date: @Html.DisplayFor(a => Model.Date)</p>
-<p>Note: @Html.DisplayFor(a => Model.Note)</p>
+<p>Note: @Html.DisplayFor(a => Model.Note)</p>*@
 
 

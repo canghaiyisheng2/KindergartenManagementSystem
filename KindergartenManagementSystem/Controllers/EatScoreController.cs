@@ -33,23 +33,36 @@ namespace KindergartenManagementSystem.Controllers
             _repository = repository;
         }
 
+        [HttpGet]
         public IActionResult GetEatScore()
         {
-            return View();
+            return View(new EatScore());
         }
+
+        [HttpPost]
+        public IActionResult GetEatScore(EatScore eatScore)
+        {
+            if (ModelState.IsValid)
+            {
+                eatScore.Date = DateTime.Now.ToString("yyyy-MM-dd");
+                _repository.InsertEatScore(eatScore);
+                return Redirect("/EatScore/SetEatScore");
+            }
+            return View(eatScore);
+        }
+
         public IActionResult SetEatScore(string stu_id, string teacher, int stars_num, string note)
         {
             // 插入数据库
-            _repository.InsertEatScore(
-                new EatScore
-            {
-                    //Id = _repository.GetIndexNum() + 1,
-                    StuId = int.Parse(stu_id),
-                    Teacher = teacher,
-                    Date = DateTime.Now.ToString("yyyyMMdd"),
-                    Score = stars_num,
-                    Note = note
-                });
+            //_repository.InsertEatScore(
+            //    new EatScore
+            //{
+            //        StuId = int.Parse(stu_id),
+            //        Teacher = teacher,
+            //        Date = DateTime.Now.ToString("yyyy-MM-dd"),
+            //        Score = stars_num,
+            //        Note = note
+            //    });
             return View();
         }
     }

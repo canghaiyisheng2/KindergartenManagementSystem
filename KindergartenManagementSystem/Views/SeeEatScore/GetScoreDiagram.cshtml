@@ -3,7 +3,7 @@
     ViewData["Title"] = "GetScoreDiagram";
 }
 
-<h2>GetScoreDiagram</h2>
+<h2>ScoreDiagram</h2>
 <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
 <div id="main-echarts" style="width: 600px;height:400px;"></div>
 <script>
@@ -27,17 +27,27 @@
             data: xs
         },
         yAxis: {
+            min: 0,
+            max: 5,
+            interval: 1,
             type: 'value'
         },
         series: [{
             data: ys,
             type: 'line'
-        }]
+        }],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                },
+                formatter(params) {
+                    return "时间：" + params[0].name + "\r\n评分：" + params[0].data;
+                }
+            }
     };
     myChart.setOption(option);
     myChart.on('click', function (params) {
         window.location.href = "/SeeEatScore/GetScoreDetail?stu_id=" + stu_id + "&date=" + params.name;
     });
 </script>
-
-
