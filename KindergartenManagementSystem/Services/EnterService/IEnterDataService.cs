@@ -14,7 +14,7 @@ namespace KindergartenManagementSystem.Services
         List<Enter_Request> GetByStarterAndStatus(string starter,int status);
         List<Enter_Request> GetByTeacherAndStatus(string cla, int status);
         void AddRequest(Enter_Request enter_Request);
-        void ApproveAccept(int id, string suggest);
-        void ApproveReject(int id, string suggest);
+        void ApproveAccept(int id, string suggest, string approver);
+        void ApproveReject(int id, string suggest, string approver);
     }
 }

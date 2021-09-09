@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using KindergartenManagementSystem.Models.EnterModels;
 using KindergartenManagementSystem.Models.shared;
 using KindergartenManagementSystem.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace KindergartenManagementSystem.Services.EnterService
 {
@@ -68,13 +69,13 @@ namespace KindergartenManagementSystem.Services.EnterService
             if (status == 3)
             {
                 query = from b in _context.enter_Requests
-                            where b.Cla == cla
-                            select b;
+                            where b.Cla == cla && b.Starter != teacher_username
+                        select b;
             }
             else
             {
                 query = from b in _context.enter_Requests
-                        where b.Cla == cla && b.Status == status
+                        where b.Cla == cla && b.Status == status && b.Starter != teacher_username
                         select b;
             }
             
@@ -99,21 +100,28 @@ namespace KindergartenManagementSystem.Services.EnterService
             return _context.enter_Requests.FirstOrDefault(m => m.Pro_id == id);
         }
 
-        public void ApproveAccept(int id, string suggest)
+        public void ApproveAccept(int id, string suggest, string approver)
         {
             Enter_Request enter_request = GetRequestById(id);
             _context.Children.Add(new Child(enter_request));
-            Console.WriteLine("Child" + enter_request.ToString());
+            _context.SaveChanges();
+
             enter_request.Status = 1;
             enter_request.Suggest = suggest;
+
+            int child_id = _context.Children.LastOrDefault(m => m.name == enter_request.Name).id;
+            enter_request.Child_Id = child_id;
+            User gua_user = _context.Users.FirstOrDefault(m => m.user_name == enter_request.Starter);
+            gua_user.banding = child_id;
             _context.SaveChanges();
         }
 
-        public void ApproveReject(int id, string suggest)
+        public void ApproveReject(int id, string suggest, string approver)
         {
             var enter_request = GetRequestById(id);
             enter_request.Status = 2;
             enter_request.Suggest = suggest;
+            enter_request.Approver = approver;
             _context.SaveChanges();
         }
     }
