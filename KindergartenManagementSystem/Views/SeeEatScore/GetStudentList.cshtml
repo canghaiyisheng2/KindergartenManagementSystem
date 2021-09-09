@@ -1,0 +1,12 @@
+﻿@model IEnumerable<KindergartenManagementSystem.Models.EatScore>
+@{ 
+    ViewData["Title"] = "GetStudentList";
+}
+
+<h2>GetStudentList</h2>
+
+@foreach (var item in Model)
+{
+    <a href="/SeeEatScore/GetScoreDiagram?stu_id=@Html.DisplayFor(model => item.StuId)">Student Id: @Html.DisplayFor(model=>item.StuId)</a>
+    <br>
+}

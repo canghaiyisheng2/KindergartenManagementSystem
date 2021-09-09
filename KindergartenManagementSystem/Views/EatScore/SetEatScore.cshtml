@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "评分成功";
+}
+
+    <h2>评分成功!</h2>
+    <p>如果无法正常跳转<a style="color:#ff6600;" href="/EatScore/GetEatScore">请点击这里！</a></p>
+    <a class="link" href="/EatScore/GetEatScore" onclick="history.go(-1)"><span id="sec">5</span> 秒后返回评分页面</a>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            setTimeout("lazyGo();", 1000);
+        });
+        function lazyGo() {
+            var sec = $("#sec").text();
+            $("#sec").text(--sec);
+            if (sec > 0)
+                setTimeout("lazyGo();", 1000);
+            else
+                window.location.href = "/EatScore/GetEatScore";
+        }
+    </script>
+

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<KindergartenManagementSystem.Models.EatScore>
+@{
+    ViewData["Title"] = "GetScoreDiagram";
+}
+
+<h2>GetScoreDiagram</h2>
+<script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+<div id="main-echarts" style="width: 600px;height:400px;"></div>
+<script>
+    var xs = new Array();
+    var ys = new Array();
+    var stu_id;
+    </script>
+@foreach (var item in Model)
+{
+    <script>stu_id=@Html.DisplayFor(a=>item.StuId)</script>
+    <script>xs.push('@Html.DisplayFor(b=>item.Date)');</script>
+    <script>ys.push(@Html.DisplayFor(a => item.Score))</script>
+}
+<script>
+    console.log(xs);
+    console.log(ys);
+    var myChart = echarts.init(document.getElementById('main-echarts'));
+    var option = {
+        xAxis: {
+            type: 'category',
+            data: xs
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: ys,
+            type: 'line'
+        }]
+    };
+    myChart.setOption(option);
+    myChart.on('click', function (params) {
+        window.location.href = "/SeeEatScore/GetScoreDetail?stu_id=" + stu_id + "&date=" + params.name;
+    });
+</script>
+
+
