@@ -23,5 +23,7 @@ namespace KindergartenManagementSystem.Services
         bool teacherAcceptAbsence(int absenceID);
 
         bool teacherRejectAbsence(int absenceID, string rejectMessage);
+
+        bool hasAuthorityToReview(int absenceID, string username);
     }
 }
