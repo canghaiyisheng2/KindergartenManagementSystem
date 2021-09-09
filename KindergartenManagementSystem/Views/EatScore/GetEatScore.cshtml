@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewData["Title"] = "GetEatScore";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/score.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"></script>
+    <link rel="stylesheet" href="~/css/stars.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+        <div class="be-content pren">
+            <div class="ioc_text">
+                <h3>就餐评分</h3>
+            </div>
+            <div>
+                <form action="/EatScore/SetEatScore" method="post" onsubmit="return last_stars()">
+                    <div class="br-content">
+                        <div class="input-group mb-4 bootint">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-child"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Student Id" name="stu_id">
+                        </div>
+                        <div class="input-group mb-4 bootint">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Teacher Name" name="teacher">
+                        </div>
+                        <div class="order-evaluation clearfix">
+                            <input type="number" name="stars_num" id="stars-num" style="display:none;" value=0>
+                            <div class="block">
+                                <ul>
+                                    <li data-default-index="0">
+                                        <span>
+                                            <img src="~/images/x1.png">
+                                            <img src="~/images/x1.png">
+                                            <img src="~/images/x1.png">
+                                            <img src="~/images/x1.png">
+                                            <img src="~/images/x1.png">
+                                        </span>
+                                        <em class="level"></em>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <textarea class="form-control" name="note" rows="3" placeholder="备注"></textarea>
+                    </div>
+                    <div style="padding-top: 10px;text-align: center;">
+                        <input type="submit" class="btn" value="提交" >
+                    </div>
+                    <div class="be-con"></div>
+            </form>
+        </div>
+
+    </div>
+    
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        /*
+         * 根据index获取 str
+         * **/
+        function byIndexLeve(index) {
+            var str = "";
+            switch (index) {
+                case 0:
+                    str = "差评";
+                    break;
+                case 1:
+                    str = "较差";
+                    break;
+                case 2:
+                    str = "中等";
+                    break;
+                case 3:
+                    str = "一般";
+                    break;
+                case 4:
+                    str = "好评";
+                    break;
+            }
+            return str;
+        }
+        //  星星数量
+        var stars = [
+            ['x2.png', 'x1.png', 'x1.png', 'x1.png', 'x1.png'],
+            ['x2.png', 'x2.png', 'x1.png', 'x1.png', 'x1.png'],
+            ['x2.png', 'x2.png', 'x2.png', 'x1.png', 'x1.png'],
+            ['x2.png', 'x2.png', 'x2.png', 'x2.png', 'x1.png'],
+            ['x2.png', 'x2.png', 'x2.png', 'x2.png', 'x2.png'],
+        ];
+        $(".block li").find("img").hover(function (e) {
+            var obj = $(this);
+            var index = obj.index();
+            if (index < (parseInt($(".block li").attr("data-default-index")) - 1)) {
+                return;
+            }
+            var li = obj.closest("li");
+            var star_area_index = li.index();
+            for (var i = 0; i < 5; i++) {
+                li.find("img").eq(i).attr("src", "/images/" + stars[index][i]);//切换每个星星
+            }
+            $(".level").html(byIndexLeve(index));
+        }, function () {
+        })
+
+        $(".block li").hover(function (e) {
+        }, function () {
+            var index = $(this).attr("data-default-index");//点击后的索引
+            index = parseInt(index);
+            console.log("index", index);
+            $(".level").html(byIndexLeve(index - 1));
+            console.log(byIndexLeve(index - 1));
+            $(".order-evaluation ul li:eq(0)").find("img").attr("src", "/images/x1.png");
+
+            for (var i = 0; i < index; i++) {
+
+                $(".order-evaluation ul li:eq(0)").find("img").eq(i).attr("src", "/images/x2.png");
+
+            }
+        })
+        $(".block li").find("img").click(function () {
+            var obj = $(this);
+            var li = obj.closest("li");
+            var star_area_index = li.index();
+            var index1 = obj.index();
+            li.attr("data-default-index", (parseInt(index1) + 1));
+            var index = $(".block li").attr("data-default-index");//点击后的索引
+            index = parseInt(index);
+            console.log("index", index);
+            $(".level").html(byIndexLeve(index - 1));
+            console.log(byIndexLeve(index - 1));
+            $(".order-evaluation ul li:eq(0)").find("img").attr("src", "/images/x1.png");
+
+            for (var i = 0; i < index; i++) {
+                $(".order-evaluation ul li:eq(0)").find("img").eq(i).attr("src", "/images/x2.png");
+            }
+
+        });
+        function last_stars() {
+            var index = $(".block li").attr("data-default-index");
+            index = parseInt(index);
+            $("#stars-num").attr("value", index);
+            return index > 0;
+        }
+    </script>
+</body>
