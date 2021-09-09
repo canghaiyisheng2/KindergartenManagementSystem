@@ -1,0 +1,75 @@
+﻿@model KindergartenManagementSystem.Models.Medical
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>就医信息详情</title>
+</head>
+<body>
+    <div class="container" style="width:70vw">
+        <header class="header">
+            <h1 class="text-center" style="margin-bottom:5vh">就医信息详情</h1>
+        </header>
+        <div class="row">
+            <div class="col-sm">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.id)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.sex)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.sex)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.class_id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.class_id)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Med_date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Med_date)
+                            </td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.out_place)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.out_place)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <a asp-action="ShowMedical">返回</a>
+    </div>
+</body>
+</html>

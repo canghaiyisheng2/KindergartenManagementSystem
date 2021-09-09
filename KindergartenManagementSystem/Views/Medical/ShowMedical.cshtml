@@ -1,0 +1,70 @@
+﻿@model IEnumerable<KindergartenManagementSystem.Models.Medical>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>就医信息</title>
+</head>
+<body>
+    <div class="container" style="width:70vw">
+        <header class="header">
+            <h1 class="text-center" style="margin-bottom:5vh">就医信息</h1>
+        </header>
+        <div class="row">
+            <div class="col-sm">
+                <button class="btn btn-info" type="button" onclick="location.href='@Url.Action("Create", "Medical")'">添加信息</button>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sex)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.class_id)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.sex)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.class_id)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("详情", "Details", new { id = item.id })
+                                </td>
+                                <td>
+                                    @Html.ActionLink("删除", "Delete", new { id = item.id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

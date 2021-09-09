@@ -43,6 +43,7 @@ namespace KindergartenManagementSystem
             services.AddTransient<IEnterDataService, EnterDataService>();
             services.AddTransient<ILoginService, LoginService>();
             services.AddTransient<IAbsenceService, AbsenceService>();
+            services.AddTransient<IMedicalRepository, MedicalRepository>();
             services.AddScoped<StudentAbsenceFilter>();
             services.AddScoped<TeacherAbsenceFilter>();
 

@@ -9,6 +9,7 @@ using KindergartenManagementSystem.Services;
 using KindergartenManagementSystem.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using KindergartenManagementSystem.Models;
 
 namespace KindergartenManagementSystem.Controllers
 {
@@ -17,10 +18,12 @@ namespace KindergartenManagementSystem.Controllers
     {
 
         IEnterDataService _data;
+        IAbsenceService _absenceService;
 
-        public HomeController(IEnterDataService data)
+        public HomeController(IEnterDataService data, IAbsenceService absenceService)
         {
             _data = data;
+            _absenceService = absenceService;
         }
 
         
@@ -29,10 +32,16 @@ namespace KindergartenManagementSystem.Controllers
             List<Enter_Request> enter_Requests = null;
             if (status == null) status = 3;
 
+            //获取入托申请流程
             if (User.Claims.ElementAt(1).Value.Equals("student"))
+            {
                 enter_Requests = _data.GetByStarterAndStatus(User.Claims.First().Value, (int)status);
+            }
             else if (User.Claims.ElementAt(1).Value.Equals("teacher"))
-                enter_Requests = _data.GetByTeacherAndStatus(User.Claims.First().Value, (int)status);
+            {
+                string username = User.Claims.First().Value;
+                enter_Requests = _data.GetByTeacherAndStatus(username, (int)status);
+            }
 
             List<process> processes = new List<process>();
             if(enter_Requests != null)
@@ -42,7 +51,7 @@ namespace KindergartenManagementSystem.Controllers
                     processes.Add(new process(item));
                 }
             }
-           
+
             return View(new HomeIndexList(processes));
         }
     }
