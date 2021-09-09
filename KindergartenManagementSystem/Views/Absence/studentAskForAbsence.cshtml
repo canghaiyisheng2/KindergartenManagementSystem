@@ -1,0 +1,44 @@
+﻿@model KindergartenManagementSystem.Models.Absence
+
+<h1 class="h1">
+    请假申请
+</h1>
+<div class="thinContainer">
+    <form class="form-horizontal" method="post" enctype="multipart/form-data" asp-action="studentAskForAbsence">
+        <div class="form-group">
+            <label for="fromTime" class="col-sm-2 control-label" asp-for="fromTime"></label>
+            <div class="col-sm-10">
+                <input class="form-control" id="fromTime" asp-for="fromTime">
+            </div>
+            <span asp-validation-for="fromTime"></span>
+        </div>
+        <div class="form-group">
+            <label for="toTime" class="col-sm-2 control-label" asp-for="toTime"></label>
+            <div class="col-sm-10">
+                <input class="form-control" id="toTime" asp-for="toTime">
+            </div>
+            <span asp-validation-for="toTime"></span>
+        </div>
+        <div class="form-group">
+            <label for="location" class="col-sm-2 control-label" asp-for="location"></label>
+            <div class="col-sm-10">
+                <input class="form-control" id="location" placeholder="示例：陕西西安长安区西安电子科技大学" asp-for="location">
+            </div>
+            <span asp-validation-for="location"></span>
+        </div>
+        <div class="form-group">
+            <label for="reason" class="col-sm-2 control-label" asp-for="reason"></label>
+            <div class="col-sm-10">
+                <input class="form-control" id="reason" placeholder="病假/事假/其他" asp-for="reason">
+            </div>
+            <span asp-validation-for="reason"></span>
+        </div>
+        <!--提交-->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">申请请假</button>
+            </div>
+        </div>
+        <p>@ViewBag.Status</p>
+    </form>
+</div>

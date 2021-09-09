@@ -1,0 +1,9 @@
+﻿<h3 class="h3">
+    @ViewBag.message，三秒后跳转
+</h3>
+
+<script type="text/javascript">
+    setTimeout(function () {
+        window.location.replace('@Url.Action("teacherListAbsence", "Absence")');
+    }, 3000);
+</script>

@@ -4,66 +4,52 @@
 #index-container {
     margin-top: 30px;
     height: 80vh;
-    width: 70vw;
-    border: 2px solid #f0f0f0;
+    width: 60vw;
+    border: 0.2vw solid #f0f0f0;
 }
 
 .option-panel {
-    border: 2px solid #f0f0f0;
+    border: 0.1vw solid #f0f0f0;
     width: inherit;
     height: 80vh;
 }
 
 .process-list {
     height: 80vh;
-    width: 33.5vw;
-    border: 2px solid #f0f0f0;
-    padding: 1px;
+    width: inherit;
+    float:right;
+    border: 0.1vw solid #f0f0f0;
+    padding: 0.1vw;
     overflow: scroll;
     overflow-x: hidden;
-}
-
-.module-panel {
-    float: right;
-    width: inherit;
-    height: 80vh;
-    border: 2px solid #f0f0f0;
 }
 
 .process-op {
     text-align: center;
     line-height: 7.5vh;
-    font-size: 20px;
+    font-size: 1.2vw;
     color: gray;
     height: 10vh;
-    width: 15vw;
-    border: 2px solid #f0f0f0;
+    width: 12.5vw;
+    border: 0.1vw solid #f0f0f0;
 }
 
 .process-entity {
-    border: 2px solid #f0f0f0;
-    padding: 5px;
+    border: 0.1vw solid #f0f0f0;
+    padding: 0.2vw;
     height: 10vh;
+    width: 43vw;
 }
 
     .process-entity > .process-brief {
         width: 20vw;
         text-align: center;
-        font-size: 20px;
+        font-size: 1.2vw;
         line-height: 6.5vh;
     }
 
     .process-entity > .process-detail {
         float: right;
+        font-size: 0.7vw;
         line-height: 7.5vh;
     }
-
-.module-option {
-    text-align: center;
-    line-height: 12vh;
-    font-size: 20px;
-    color: gray;
-    height: 15vh;
-    width: 10vw;
-    border: 2px solid #f0f0f0;
-}

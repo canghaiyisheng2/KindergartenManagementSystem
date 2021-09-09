@@ -1,0 +1,65 @@
+﻿@model KindergartenManagementSystem.Models.Absence
+
+<h1 class="h1">
+    请假详情
+</h1>
+<div class="container thinContainer bigFont">
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">请假ID</div>
+        </div>
+        <div class="col-xs-9">@Model.id</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">请假发起者ID</div>
+        </div>
+        <div class="col-xs-9">@Model.starter</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">请假审批者ID</div>
+        </div>
+        <div class="col-xs-9">@Model.approver</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">请假开始时间</div>
+        </div>
+        <div class="col-xs-9">@Model.fromTime.ToString()</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">请假结束时间</div>
+        </div>
+        <div class="col-xs-9">@Model.toTime.ToString()</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">前往地点</div>
+        </div>
+        <div class="col-xs-9">@Model.location</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">请假原因</div>
+        </div>
+        <div class="col-xs-9">@Model.reason</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">拒绝原因</div>
+        </div>
+        <div class="col-xs-9">@Model.rejectReason</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">状态</div>
+        </div>
+        <div class="col-xs-9">@Model.status</div>
+    </div>
+</div>
+
+<div class="thinContainer">
+    <button type="submit" class="btn btn-default" onclick="window.location.href='@Url.Action("studentReportedBackFromLeave", "Absence",  new { absenceID = Model.id })'">销假</button>
+</div>

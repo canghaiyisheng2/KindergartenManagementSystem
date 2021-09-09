@@ -4,3 +4,50 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
+
+footer {
+    margin-top: 20vh;
+}
+
+.module {
+    position: fixed;
+    right: 0;
+    padding: 0;
+    margin-right: 3vw;
+    margin-top: 5vh;
+    width: 10vw;
+    height: 70vh;
+    border: 2px solid #f0f0f0;
+}
+
+
+.module-option {
+    text-align: center;
+    font-size: 1.2vw;
+    color: gray;
+    height: 10vh;
+    width: 10vw;
+    line-height: 7.5vh;
+    border: 2px solid #f0f0f0;
+}
+
+.err-msg {
+    color: red;
+}
+
+/*比较窄的div，用于包裹其他元素*/
+.thinContainer {
+    margin: auto;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 70%;
+}
+
+.emphasize {
+    border-left: solid;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    padding-left: 5mm;
+    text-align: left;
+}

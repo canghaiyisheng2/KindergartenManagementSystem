@@ -1,0 +1,83 @@
+﻿@model KindergartenManagementSystem.Models.Absence
+
+<h1 class="h1">
+    请假详情
+</h1>
+<div class="container thinContainer">
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">请假id</div>
+        </div>
+        <div class="col-xs-9">@Model.id</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">请假发起者</div>
+        </div>
+        <div class="col-xs-9">@Model.starter</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">请假审批者</div>
+        </div>
+        <div class="col-xs-9">@Model.approver</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">开始时间</div>
+        </div>
+        <div class="col-xs-9">@Model.fromTime.ToString()</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">结束时间</div>
+        </div>
+        <div class="col-xs-9">@Model.toTime.ToString()</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">前往地点</div>
+        </div>
+        <div class="col-xs-9">@Model.location</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">请假原因</div>
+        </div>
+        <div class="col-xs-9">@Model.reason</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">拒绝原因</div>
+        </div>
+        <div class="col-xs-9">@Model.rejectReason</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="emphasize">状态</div>
+        </div>
+        <div class="col-xs-9">@Model.status</div>
+    </div>
+</div>
+
+<h3 class="h3 emphasize">审批</h3>
+<div class="thinContainer">
+    <div class="form-group">
+        <input class="form-control" id="rejectMessage" placeholder="填写审核意见，如果同意请求，可不填写">
+    </div>
+    <div class="row">
+        <div class="col-xs-6" style="padding-left:0">
+            <a class="btn btn-default" href='@Url.Action("teacherAcceptAbsence", "Absence",  new { absenceID = Model.id })'>同意请求</a>
+        </div>
+        <div class="col-xs-6">
+            <a id="rejectA" class="btn btn-default">拒绝请求</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("rejectA").addEventListener("click", function () {
+        let url = '@Url.Action("teacherRejectAbsence", "Absence",  new { absenceID = Model.id})' + '&rejectMessage=' + document.getElementById('rejectMessage').value;
+        window.location.href = url;
+    });
+</script>

@@ -7,36 +7,74 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-collapse collapse">
-                //用户信息
-            </div>
+            <ul class="nav navbar-nav navbar-right">
+                @if (User.Claims.FirstOrDefault() != null)
+                {
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> @User.Claims.FirstOrDefault().Value</a></li>
+                    <li><a href="@Url.Action("LogOut","Login")"><span class="glyphicon glyphicon-log-in"></span> 退出登录</a></li>
+                }
+
+            </ul>
         </div>
     </nav>
 
+    <div class="module">
+        <div class="btn module-option" onclick="window.location ='@Url.Action("Index","Home")'">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+            首页
+        </div>
+        <div class="btn module-option" onclick="window.location='@Url.Action("EnterForm","Enter")'">
+            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+            入托申请
+        </div>
+        <div class="btn module-option" onclick="window.location='#'">
+            <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+            就餐管理
+        </div>
+        <div class="btn module-option" onclick="window.location='#'">
+            <span class="glyphicon glyphicon-bed" aria-hidden="true"></span>
+            午休管理
+        </div>
+        <div class="btn module-option" onclick="window.location='#'">
+            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+            请假管理
+        </div>
+        <div class="btn module-option" onclick="window.location='#'">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            违纪管理
+        </div>
+        <div class="btn module-option" onclick="window.location='#'">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            就医管理
+        </div>
+
+    </div>
+
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
         <footer>
+            <hr />
             <p>&copy; 2021 - KindergartenManagementSystem</p>
         </footer>
     </div>
 
+
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
@@ -51,9 +89,9 @@
                 crossorigin="anonymous"
                 integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
         </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
     <partial name="_ValidationScriptsPartial.cshtml" />
 
     @RenderSection("Scripts", required: false)
