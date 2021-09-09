@@ -1,12 +1,22 @@
-﻿@model IEnumerable<KindergartenManagementSystem.Models.EatScore>
-@{ 
+﻿@model IEnumerable<KindergartenManagementSystem.Models.shared.Child>
+@{
     ViewData["Title"] = "GetStudentList";
 }
-
-<h2>GetStudentList</h2>
-
-@foreach (var item in Model)
-{
-    <a href="/SeeEatScore/GetScoreDiagram?stu_id=@Html.DisplayFor(model => item.StuId)">Student Id: @Html.DisplayFor(model=>item.StuId)</a>
-    <br>
-}
+<h2>Students List</h2>
+<ul class="list-group">
+    @foreach (var item in Model)
+    {
+    <li class="list-group-item">
+        <a href="/SeeEatScore/GetScoreDiagram?stu_id=@Html.DisplayFor(model => item.id)">
+            <span>学号：@Html.DisplayFor(model => item.id)</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>姓名: @Html.DisplayFor(model => item.name)</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>
+                性别: @if (item.sex == true)
+                {<span>男</span>}
+                else
+                { <span>女</span>}
+            </span>
+        </a>
+        </li>
+        }
+</ul>

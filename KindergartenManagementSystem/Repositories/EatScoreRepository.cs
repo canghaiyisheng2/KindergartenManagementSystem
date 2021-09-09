@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using KindergartenManagementSystem.Data;
 using KindergartenManagementSystem.Models;
+using KindergartenManagementSystem.Models.shared;
 
 namespace KindergartenManagementSystem.Repositories
 {
@@ -16,9 +17,9 @@ namespace KindergartenManagementSystem.Repositories
             _context = context;
         }
         
-        public IEnumerable<EatScore> GetAll()
+        public IEnumerable<Child> GetAll()
         {
-            return _context.EatScores.GroupBy(a=>a.StuId).Select(b=>b.First()).ToList();
+            return _context.Children.GroupBy(a=>a.id).Select(b=>b.First()).ToList();
         }
 
         public IEnumerable<EatScore> GetScoreByStuId(int stu_id)

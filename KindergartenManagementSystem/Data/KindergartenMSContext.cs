@@ -36,7 +36,7 @@ namespace KindergartenManagementSystem.Data
                     Id = 1,
                     StuId = 1,
                     Teacher = "fnsflm",
-                    Date = "20210908",
+                    Date = "2021-09-08",
                     Score = 4,
                     Note = "hhh"
                 },
@@ -45,7 +45,7 @@ namespace KindergartenManagementSystem.Data
                     Id = 2,
                     StuId = 2,
                     Teacher = "fnsflm",
-                    Date = "20210901",
+                    Date = "2021-09-01",
                     Score = 1,
                     Note = "eee"
                 },
@@ -54,7 +54,7 @@ namespace KindergartenManagementSystem.Data
                     Id = 3,
                     StuId = 2,
                     Teacher = "fnsflm",
-                    Date = "20210902",
+                    Date = "2021-09-02",
                     Score = 1,
                     Note = "eee"
                 },
@@ -63,7 +63,7 @@ namespace KindergartenManagementSystem.Data
                     Id = 4,
                     StuId = 2,
                     Teacher = "fnsflm",
-                    Date = "20210903",
+                    Date = "2021-09-03",
                     Score = 1,
                     Note = "eee"
                 },
@@ -72,7 +72,7 @@ namespace KindergartenManagementSystem.Data
                     Id = 5,
                     StuId = 2,
                     Teacher = "fnsflm",
-                    Date = "20210904",
+                    Date = "2021-09-04",
                     Score = 1,
                     Note = "eee"
                 },
@@ -81,10 +81,33 @@ namespace KindergartenManagementSystem.Data
                     Id = 6,
                     StuId = 2,
                     Teacher = "fnsflm",
-                    Date = "20210905",
+                    Date = "2021-09-05",
                     Score = 1,
                     Note = "eee"
-                });
+                },
+                new EatScore
+                {
+                    Id = 7,
+                    StuId = 2,
+                    Teacher = "fnsflm",
+                    Date = "2021-09-05",
+                    Score = 5,
+                    Note = "eeeee"
+                }
+                );
+            modelBuilder.Entity<Child>().HasData(
+                new Child
+                {
+                    id = 1,
+                    name = "Tom"
+                },
+                new Child
+                {
+                    id = 2,
+                    name = "Joe",
+                    sex = true
+                }
+                );
         }
     }
 }
