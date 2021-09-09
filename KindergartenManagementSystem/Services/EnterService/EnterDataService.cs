@@ -5,31 +5,30 @@ using System.Threading.Tasks;
 using KindergartenManagementSystem.Models.EnterModels;
 using KindergartenManagementSystem.Models.shared;
 using KindergartenManagementSystem.Data;
-using Microsoft.AspNetCore.Http;
 
 namespace KindergartenManagementSystem.Services.EnterService
 {
-    public class EnterDataService : IEnterDataService
-    {
-        KindergartenMSContext _context;
+   public class EnterDataService : IEnterDataService
+   {
+       KindergartenMSContext _context;
 
-        public EnterDataService(KindergartenMSContext context)
-        {
-            _context = context;
-        }
+       public EnterDataService(KindergartenMSContext context)
+       {
+           _context = context;
+       }
 
-        public List<Enter_Request> enter_Requests { get; set; }
+       public List<Enter_Request> enter_Requests { get; set; }
 
-        public void AddRequest(Enter_Request enter_Request)
-        {
-            _context.enter_Requests.Add(enter_Request);
-            _context.SaveChanges();
-        }
+       public void AddRequest(Enter_Request enter_Request)
+       {
+           _context.enter_Requests.Add(enter_Request);
+           _context.SaveChanges();
+       }
 
-        public List<Enter_Request> GetAll()
-        {
-            return _context.enter_Requests.ToList();
-        }
+       public List<Enter_Request> GetAll()
+       {
+           return _context.enter_Requests.ToList();
+       }
 
         public List<Enter_Request> GetByStarterAndStatus(string starter, int status)
         {
@@ -69,13 +68,13 @@ namespace KindergartenManagementSystem.Services.EnterService
             if (status == 3)
             {
                 query = from b in _context.enter_Requests
-                            where b.Cla == cla && b.Starter != teacher_username
-                        select b;
+                            where b.Cla == cla
+                            select b;
             }
             else
             {
                 query = from b in _context.enter_Requests
-                        where b.Cla == cla && b.Status == status && b.Starter != teacher_username
+                        where b.Cla == cla && b.Status == status
                         select b;
             }
             
@@ -94,35 +93,28 @@ namespace KindergartenManagementSystem.Services.EnterService
             return res;
         }
 
-        public Enter_Request GetRequestById(int? id)
-        {
-            if (id == null) return null;
-            return _context.enter_Requests.FirstOrDefault(m => m.Pro_id == id);
-        }
+       public Enter_Request GetRequestById(int? id)
+       {
+           if (id == null) return null;
+           return _context.enter_Requests.FirstOrDefault(m => m.Pro_id == id);
+       }
 
-        public void ApproveAccept(int id, string suggest, string approver)
-        {
-            Enter_Request enter_request = GetRequestById(id);
-            _context.Children.Add(new Child(enter_request));
-            _context.SaveChanges();
+       public void ApproveAccept(int id, string suggest)
+       {
+           Enter_Request enter_request = GetRequestById(id);
+           _context.Children.Add(new Child(enter_request));
+           Console.WriteLine("Child" + enter_request.ToString());
+           enter_request.Status = 1;
+           enter_request.Suggest = suggest;
+           _context.SaveChanges();
+       }
 
-            enter_request.Status = 1;
-            enter_request.Suggest = suggest;
-
-            int child_id = _context.Children.LastOrDefault(m => m.name == enter_request.Name).id;
-            enter_request.Child_Id = child_id;
-            User gua_user = _context.Users.FirstOrDefault(m => m.user_name == enter_request.Starter);
-            gua_user.banding = child_id;
-            _context.SaveChanges();
-        }
-
-        public void ApproveReject(int id, string suggest, string approver)
-        {
-            var enter_request = GetRequestById(id);
-            enter_request.Status = 2;
-            enter_request.Suggest = suggest;
-            enter_request.Approver = approver;
-            _context.SaveChanges();
-        }
-    }
+       public void ApproveReject(int id, string suggest)
+       {
+           var enter_request = GetRequestById(id);
+           enter_request.Status = 2;
+           enter_request.Suggest = suggest;
+           _context.SaveChanges();
+       }
+   }
 }
