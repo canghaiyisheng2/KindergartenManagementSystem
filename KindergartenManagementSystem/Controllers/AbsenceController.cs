@@ -21,6 +21,20 @@ namespace KindergartenManagementSystem.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        public IActionResult Index()
+        {
+            if (User.Claims.ElementAt(1).Value.CompareTo("teacher") == 0)
+            {
+                return RedirectToAction("teacherListAbsence", "Absence");
+            }
+            else
+            {
+                return RedirectToAction("studentListAbsence", "Absence");
+            }
+        }
+
+        [HttpGet]
         [Authorize(Roles = "student")]
         public IActionResult studentAskForAbsence()
         {
