@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "_teacherAbsenceLayout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<nav class="navbar navbar-default">
+    <div class="navbar-brand">请假管理</div>
+
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href='@Url.Action("teacherListAbsence", "Absence")'>请假列表</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+@RenderBody()
+
+
