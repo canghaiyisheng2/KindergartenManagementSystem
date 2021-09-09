@@ -107,6 +107,7 @@ namespace KindergartenManagementSystem.Services.EnterService
 
             enter_request.Status = 1;
             enter_request.Suggest = suggest;
+            enter_request.Approver = approver;
 
             int child_id = _context.Children.LastOrDefault(m => m.name == enter_request.Name).id;
             enter_request.Child_Id = child_id;
