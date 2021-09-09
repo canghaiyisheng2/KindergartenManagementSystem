@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KindergartenManagementSystem.Models.EnterModels;
 using KindergartenManagementSystem.Services;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace KindergartenManagementSystem.Controllers
 {
+    [Authorize]
     public class EnterController : Controller
     {
         IEnterDataService _data;
@@ -31,6 +33,7 @@ namespace KindergartenManagementSystem.Controllers
             Enter_Request enter_Request = null;
             if(id != null)
                 enter_Request = _data.GetRequestById(id);
+            ViewBag.auth = User.Claims.ElementAt(1).Value;
             return View(enter_Request);
         }
 
@@ -40,7 +43,7 @@ namespace KindergartenManagementSystem.Controllers
             if (ModelState.IsValid)
             {
                 enter_Request.Status = 0;
-                enter_Request.Starter = "starter";
+                enter_Request.Starter = User.Claims.First().Value;
                 _data.AddRequest(enter_Request);
                 return RedirectToAction("Index", "Home");
             }

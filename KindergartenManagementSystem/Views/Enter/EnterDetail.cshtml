@@ -93,7 +93,7 @@
         </div>
     </div>
 
-    @if (Model.Status == 0)
+    @if (Model.Status == 0 && ViewBag.auth == "teacher")
     {
         <form role="form" method="post" enctype="multipart/form-data" asp-action="Approve" asp-route-id="@Model.Pro_id">
             <textarea class="form-control" rows="10" name="suggest"></textarea>

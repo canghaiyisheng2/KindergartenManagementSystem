@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using KindergartenManagementSystem.Models.EnterModels;
 using KindergartenManagementSystem.Services;
 using KindergartenManagementSystem.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace KindergartenManagementSystem.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
 
@@ -20,14 +23,26 @@ namespace KindergartenManagementSystem.Controllers
             _data = data;
         }
 
-        public IActionResult Index()
+        
+        public IActionResult Index(int? status)
         {
-            List<Enter_Request> enter_Requests = _data.GetAll();
+            List<Enter_Request> enter_Requests = null;
+            if (status == null) status = 3;
+
+            if (User.Claims.ElementAt(1).Value.Equals("student"))
+                enter_Requests = _data.GetByStarterAndStatus(User.Claims.First().Value, (int)status);
+            else if (User.Claims.ElementAt(1).Value.Equals("teacher"))
+                enter_Requests = _data.GetByTeacherAndStatus(User.Claims.First().Value, (int)status);
+
             List<process> processes = new List<process>();
-            foreach(Enter_Request item in enter_Requests)
+            if(enter_Requests != null)
             {
-                processes.Add(new process(item));
+                foreach (Enter_Request item in enter_Requests)
+                {
+                    processes.Add(new process(item));
+                }
             }
+           
             return View(new HomeIndexList(processes));
         }
     }
