@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using KindergartenManagementSystem.Data;
-using KindergartenManagementSystem.Services.EnterService;
+//using KindergartenManagementSystem.Services.EnterService;
 using Microsoft.EntityFrameworkCore;
 using KindergartenManagementSystem.Services;
 
@@ -31,7 +31,9 @@ namespace KindergartenManagementSystem
         {
             services.AddDbContext<KindergartenMSContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddTransient<IEnterDataService, EnterDataService>();
+            //services.AddTransient<IEnterDataService, EnterDataService>();
+
+            services.AddTransient<IAbsenceService, AbsenceService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

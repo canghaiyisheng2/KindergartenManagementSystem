@@ -1,1 +1,26 @@
-﻿hello world
+﻿<div class="container thinContainer">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>请假id</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>地点</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.list)
+            {
+                <tr>
+                    <td><a href="@Url.Action("studentDisplayAbsenceInfo", "Absence",  new { absenceID = item.id })">@item.id</a></td>
+                    <td>@item.fromTime</td>
+                    <td>@item.toTime</td>
+                    <td>@item.location</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
