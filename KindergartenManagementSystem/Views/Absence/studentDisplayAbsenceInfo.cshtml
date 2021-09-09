@@ -1,5 +1,9 @@
 ﻿@model KindergartenManagementSystem.Models.Absence
 
+@{
+    Layout = "_studentAbsenceLayout.cshtml";
+}
+
 <h1 class="h1">
     请假详情
 </h1>
@@ -12,25 +16,19 @@
     </div>
     <div class="row">
         <div class="col-xs-3">
-            <div class="emphasize">请假发起者ID</div>
+            <div class="emphasize">请假发起者</div>
         </div>
         <div class="col-xs-9">@Model.starter</div>
     </div>
     <div class="row">
         <div class="col-xs-3">
-            <div class="emphasize">请假审批者ID</div>
-        </div>
-        <div class="col-xs-9">@Model.approver</div>
-    </div>
-    <div class="row">
-        <div class="col-xs-3">
-            <div class="emphasize">请假开始时间</div>
+            <div class="emphasize">开始时间</div>
         </div>
         <div class="col-xs-9">@Model.fromTime.ToString()</div>
     </div>
     <div class="row">
         <div class="col-xs-3">
-            <div class="emphasize">请假结束时间</div>
+            <div class="emphasize">结束时间</div>
         </div>
         <div class="col-xs-9">@Model.toTime.ToString()</div>
     </div>

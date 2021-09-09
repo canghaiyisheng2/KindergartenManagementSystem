@@ -28,8 +28,6 @@ namespace KindergartenManagementSystem.Services
         // 添加请假申请
         public bool add(Absence absence)
         {
-            absence.starter = "tom";
-            absence.approver = "jim";
             absence.rejectReason = "";
             absence.status = (int)AbsenceStatus.TO_BE_REVIEWED;
             _context.Absences.Add(absence);
@@ -48,7 +46,8 @@ namespace KindergartenManagementSystem.Services
             if (absence.status == (int)AbsenceStatus.COMPLETED)
             {
                 return false;
-            } else
+            }
+            else
             {
                 absence.status = (int)AbsenceStatus.COMPLETED;
                 _context.Entry(absence).State = EntityState.Modified;
@@ -59,9 +58,13 @@ namespace KindergartenManagementSystem.Services
 
         public IQueryable<Absence> teacherListAbsence(string username)
         {
-            return from b in _context.Absences
-                   where b.approver == username
-                   select b;
+            User user = _context.Users.Find(username);
+            Teacher teacher = _context.Teachers.Find(user.banding);
+            return from a in _context.Absences
+                   join b in _context.Users on a.starter equals b.user_name
+                   join c in _context.Children on b.banding equals c.id
+                   where c.cla == teacher.cla
+                   select a;
         }
 
         public bool teacherAcceptAbsence(int absenceID)
@@ -95,6 +98,13 @@ namespace KindergartenManagementSystem.Services
             {
                 return false;
             }
+        }
+
+        public bool hasAuthorityToReview(int absenceID, string username)
+        {
+            Teacher teacher = _context.Teachers.Find(_context.Users.Find(username).banding);
+            Child child = _context.Children.Find(_context.Users.Find(_context.Absences.Find(absenceID).starter).banding);
+            return child.cla.CompareTo(teacher.cla) == 0;
         }
     }
 }

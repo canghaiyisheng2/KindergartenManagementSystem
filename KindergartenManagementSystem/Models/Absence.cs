@@ -19,10 +19,6 @@ namespace KindergartenManagementSystem.Models
         //public virtual Child starter { get; set; }
         public string starter { get; set; }
 
-        //[ForeignKey("Teacher_id")]
-        //public virtual Teacher approver { get; set; }
-        public string approver { get; set; }
-
         [Display(Name = "开始时间")]
         [Required(ErrorMessage = "必须填写开始时间")]
         public DateTime fromTime { get; set; }

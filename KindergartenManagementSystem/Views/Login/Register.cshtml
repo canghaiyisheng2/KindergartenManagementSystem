@@ -18,11 +18,11 @@
                     </div>
                     <!--        密码图标和密码输入框                -->
                     <div class="form-group">
-                        <input class="form-control required" type="password" name="password" id="password" placeholder="请输入密码" required>
+                        <input class="form-control required" type="password" name="password" id="password" oninput="checkSame()" placeholder="请输入密码" required>
                     </div>
                     <!--          确认密码              -->
                     <div class="form-group">
-                        <input class="form-control required" type="password" name="resetpw" id="resetpw" placeholder="请确认密码" required>
+                        <input class="form-control required" type="password" name="resetpw" id="resetpw" oninput="check()" placeholder="请确认密码" required>
                     </div>
                     <div class="form-group" id="teacher" style="display: none">
                         <input class="form-control" type="text" name="name" placeholder="请输入姓名" >
@@ -60,6 +60,21 @@
             $('#teacher').css('display', 'none');
             $("[name='name']").removeAttr('required');
             $("[name='cla']").removeAttr('required');
+        }
+
+        function check() {
+            if ($('#resetpw').val() != $('#password').val()) {
+                $('.err-msg').text("确认密码需要与输入密码一致");
+            }
+            else {
+                $('.err-msg').html("");
+            }
+        }
+
+        function checkSame() {
+            if ($('#resetpw').val() == $('#password').val()) {
+                $('.err-msg').html("");
+            }
         }
     </script>
 </body>

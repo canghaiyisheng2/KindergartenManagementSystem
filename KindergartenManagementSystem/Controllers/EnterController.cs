@@ -53,10 +53,11 @@ namespace KindergartenManagementSystem.Controllers
         [HttpPost]
         public IActionResult Approve(bool result ,string suggest ,int id)
         {
+            string approver = HttpContext.User.Claims.First().Value;
             if (result)
-                _data.ApproveAccept(id, suggest);
+                _data.ApproveAccept(id, suggest, approver);
             else
-                _data.ApproveReject(id, suggest);
+                _data.ApproveReject(id, suggest, approver);
             return RedirectToRoute(new { action = "EnterDetail", id = id});
         }
     }
