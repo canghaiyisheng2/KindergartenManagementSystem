@@ -6,6 +6,7 @@ using KindergartenManagementSystem.Models.EnterModels;
 using KindergartenManagementSystem.Models.shared;
 using KindergartenManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
+using KindergartenManagementSystem.Models.ViolationModels;
 
 namespace KindergartenManagementSystem.Data
 {
@@ -32,7 +33,11 @@ namespace KindergartenManagementSystem.Data
         //午休模块
         public virtual DbSet<NoonBreak> NoonBreak { get; set; }
 
+        //就医模块
         public DbSet<Medical> medicals { get; set; }
+
+        //违纪模块
+        public DbSet<Record> Records { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

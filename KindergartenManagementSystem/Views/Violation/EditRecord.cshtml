@@ -1,0 +1,34 @@
+﻿@using KindergartenManagementSystem.Models.ViolationModels
+@model KindergartenManagementSystem.Models.ViolationModels.Record
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <div class="container" style="width:60vw; margin-top: 4vh;">
+        <h2 class="title">Edit a record</h2>
+        <button type="button" onclick="location.href='@Url.Action("ViolationMainPage", "Violation")'">Back to MainPage</button>
+        <form role="form" method="post" enctype="multipart/form-data" asp-action="EditRecord">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="reason"></label>
+                <input type="text" class="form-control" name="reason">
+                <span asp-validation-for="reason"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="score"></label>
+                <input type="text" class="form-control" name="score">
+                <span asp-validation-for="score"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>

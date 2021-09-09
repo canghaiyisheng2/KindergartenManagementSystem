@@ -1,0 +1,45 @@
+﻿@using KindergartenManagementSystem.Models.ViolationModels
+@model KindergartenManagementSystem.Models.ViolationModels.Record
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddRecord</title>
+</head>
+<body>
+    <div class="container" style="width:60vw; margin-top: 4vh;">
+        <h2 class="main-titel" style="margin-bottom:3vh;">添加违纪记录</h2>
+        <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("ViolationMainPage", "Violation")'">Back to MainPage</button>
+        <form role="form" method="post" enctype="multipart/form-data" asp-action="AddRecord">
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label asp-for="childId"></label>
+                <input type="text" class="form-control" name="childID">
+                <span asp-validation-for="childId"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="childName"></label>
+                <input type="text" class="form-control" name="childName">
+                <span asp-validation-for="childName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="reason"></label>
+                <input type="text" class="form-control" name="reason">
+                <span asp-validation-for="reason"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="score"></label>
+                <input type="text" class="form-control" name="score">
+                <span asp-validation-for="score"></span>
+            </div>
+            <div class="err-msg">@ViewBag.err</div>
+            <div class="form-group">
+                <input class="btn btn-default" type="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>

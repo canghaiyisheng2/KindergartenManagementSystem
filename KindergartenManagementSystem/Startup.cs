@@ -14,7 +14,8 @@ using KindergartenManagementSystem.Services.EnterService;
 using Microsoft.EntityFrameworkCore;
 using KindergartenManagementSystem.Services;
 using KindergartenManagementSystem.Filter.AbsenceFilter;
-
+using KindergartenManagementSystem.Services.ViolationService;
+using KindergartenManagementSystem.Services.UserService;
 
 namespace KindergartenManagementSystem
 {
@@ -46,6 +47,8 @@ namespace KindergartenManagementSystem
             services.AddTransient<IMedicalRepository, MedicalRepository>();
             services.AddScoped<StudentAbsenceFilter>();
             services.AddScoped<TeacherAbsenceFilter>();
+            services.AddTransient<IRecordService, RecordService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<KindergartenManagementSystem.Models.ViolationModels.Record>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container" style="width:60vw; margin-top:4vh; font-size:1.2vw">
+        <div class="main-title">
+            <h2 style="margin-bottom:3vh;">违纪管理模块</h2>
+        </div>
+        @if (ViewBag.value == 1)
+        {
+            <button type="button" onclick="location.href='@Url.Action("AddRecord", "Violation")'">Add Record</button>
+        }
+            <div class="img-container" style="width:60vw; margin-top:4vh; font-size:1.2vw">
+                @foreach (var item in Model)
+                {
+                <div class="row" style="border: 1px solid #f0f0f0">
+                    <div class="col-md-6 col-sm-6">
+                        <label asp-for="@item.childId"></label>
+                        @item.childId
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <label asp-for="@item.childName"></label>
+                        @item.childName
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <label asp-for="@item.reason"></label>
+                        @item.reason
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <label asp-for="@item.score"></label>
+                        @item.score
+                    </div>
+                    @if (ViewBag.auth == "teacher")
+                    {
+                        <div class="col-md-6 col-sm-6">
+                            <a asp-action="EditRecord" asp-route-id="@item.childId">Edit</a>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <a asp-action="DeleteRecord" asp-route-id="@item.childId">Delete</a>
+                        </div>
+                    }
+                </div>
+                }
+            </div>
+    </div>
+</body>
+</html>
