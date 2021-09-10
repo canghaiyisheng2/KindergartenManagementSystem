@@ -244,6 +244,19 @@ namespace KindergartenManagementSystem.Data
                     Note = "eeeee"
                 }
                 );
+            //modelBuilder.Entity<Child>().HasData(
+            //    new Child
+            //    {
+            //        id = 1,
+            //        name = "Tom"
+            //    },
+            //    new Child
+            //    {
+            //        id = 2,
+            //        name = "Joe",
+            //        sex = true
+            //    }
+            //    );
         }
     }
 }
